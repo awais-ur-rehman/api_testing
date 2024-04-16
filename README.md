@@ -18,27 +18,28 @@ To run these tests, you will need:
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/awais-ur-rehman/api_testing
+
+cd api_testing
 
 Build the Docker image:
-bash
-Copy code
+
 docker build -t pytest-bdd-container .
+
 Running the tests
+
 Run the Docker container to execute the tests:
 
-bash
-Copy code
 docker run --env-file .env --name my_pytest_container pytest-bdd-container
+
 After the tests have completed, you can retrieve the HTML report from the container:
 
-bash
-Copy code
 docker cp my_pytest_container:/app/report.html .
 The report.html file will be copied to your current directory, where you can open it with any web browser to view the test results.
+```
 
-Test Scenarios
+### Test Scenarios
+
 The tests cover the following scenarios:
 
 Fetching top-rated movies with both valid and invalid API keys.
@@ -47,13 +48,17 @@ Attempting to rate a movie without authorization and expecting an unauthorized (
 Rating a movie with invalid input and expecting a bad request (400) response.
 Each scenario is documented in the BDD-style feature file test_movies_api.feature.
 
-Built With
+### Built With
+
 Pytest - The testing framework used.
 Requests - The library used to make HTTP requests.
 Pytest-BDD - BDD library for the Pytest framework.
 Docker - Container platform used to encapsulate the testing environment.
-Authors
-Your Name - Initial work - YourUsername
-License
+
+### Authors
+
+Awais Ur Rehman - awais-ur-rehman
+
+### License
+
 This project is licensed under the MIT License - see the LICENSE.md file for details.
-```
