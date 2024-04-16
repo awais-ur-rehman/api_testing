@@ -1,0 +1,37 @@
+Feature: Movie Database API Testing
+  As a user of the Movie Database API
+  I want to make sure that the top-rated movies can be accessed
+  And that I can rate movies with proper authorization
+  
+  Scenario: Get top rated movies with a valid API key
+    Given I have a valid API key
+    When I request the list of top rated movies
+    Then I should receive a response with status code 200
+    And the response should include a list of movies
+  
+  Scenario: Get top rated movies with an invalid API key
+    Given I have an invalid API key
+    When I request the list of top rated movies
+    Then I should receive a response with status code 401
+    And the response should indicate that I am unauthorized
+  
+  Scenario: Rate a movie successfully with valid authorization
+    Given I have valid authorization
+    And I have the ID of a specific movie
+    When I submit a rating for the movie
+    Then I should receive a response with status code 201
+    And the response should confirm the rating was successfully recorded
+  
+  Scenario: Attempt to rate a movie without authorization
+    Given I do not have valid authorization
+    And I have the ID of a specific movie
+    When I submit a rating for the movie
+    Then I should receive a response with status code 401
+    And the response should indicate that I am unauthorized
+  
+  Scenario: Rate a movie with invalid input
+    Given I have valid authorization
+    And I have the ID of a specific movie
+    When I submit an invalid rating for the movie
+    Then I should receive a response with status code 400
+    And the response should indicate there was bad input
